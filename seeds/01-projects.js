@@ -1,13 +1,20 @@
-
-exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
+exports.seed = function (knex) {
+  return knex('projects')
+    .truncate()
     .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('projects').insert([
+        {
+          project_name: 'Feed the Needy',
+          project_description: 'find food',
+          project_completed: 'false'
+        },
+
+        {
+          project_name: 'Travel to the Moon',
+          project_description: 'Find ways to travel',
+          project_completed: 'true'
+        }
       ]);
-    });
+    })
+
 };
