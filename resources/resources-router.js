@@ -12,4 +12,17 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post("/", (req, res) => {
+  const resource = req.body;
+
+  Resource.addResource(resource)
+    .then(count => {
+      res.status(201).json(count);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Could not add resources" });
+    });
+});
+
+
 module.exports = router;

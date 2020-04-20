@@ -46,14 +46,14 @@ router.get('/:id/tasks', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const projectData = req.body;
-  console.log(req.body)
-  Projects.addProjects(projectData)
-    .then(newProject => {
-      res.status(201).json(newProject);
+  const project = req.body;
+
+  Projects.addProjects(project)
+    .then(count => {
+      res.status(201).json(count);
     })
     .catch(err => {
-      res.status(500).json({ message: 'Failed to create new project' });
+      res.status(500).json({ message: 'Could not add project' });
     });
 });
 
