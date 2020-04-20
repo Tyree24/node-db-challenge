@@ -1,11 +1,13 @@
 const express = require('express');
-const projects = require('./project-model');
+const Projects = require('./project-model');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  projects.find()
-    .then(projects => {
-      res.json(projects);
+  // console.log(Projects);
+  Projects.findProjects()
+    .then(project => {
+      res.json(project);
+
     })
     .catch(err => {
       res.status(500).json({ message: 'Failed to get projects', err })
@@ -46,9 +48,9 @@ router.get('/:id/tasks', (req, res) => {
 router.post('/', (req, res) => {
   const projectData = req.body;
   console.log(req.body)
-  Projects.add(projectData)
-    .then(project => {
-      res.status(201).json(project);
+  Projects.addProjects(projectData)
+    .then(newProject => {
+      res.status(201).json(newProject);
     })
     .catch(err => {
       res.status(500).json({ message: 'Failed to create new project' });
